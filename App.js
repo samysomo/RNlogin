@@ -5,14 +5,41 @@ export default function App() {
   const [expediente, setExpediente] = useState("")
   const [password, setPassword] = useState("")
 
+  const users = [
+    {
+      name: "Samuel",
+      password: "12345678"
+    },
+    {
+      name: "Ruth",
+      password: "12345678"
+    },
+    {
+      name: "Lud",
+      password: "12345678"
+    },
+  ]
+
   const handleSubmit = () =>{
     if(password.length < 8){
       alert("La contraseña debe tener minimo 8 caracteres")
 
     } else{
-      !expediente === false && !password === false
-      ? alert("Usuario Autenticado")
-      : alert("Usuario o contraseña incorrecto")
+      let userAuthenticated = false;
+
+      for (let user of users) {
+        if (user.name === expediente && user.password === password) {
+          userAuthenticated = true;
+          break;
+        }
+      }
+
+      if (userAuthenticated) {
+        alert("Usuario autenticado");
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+      
     }
   }
 
